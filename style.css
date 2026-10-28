@@ -1,0 +1,94 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1e1e2f;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #fff;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Difficulty buttons */
+        .difficulty {
+            display: flex;
+            gap: 10px;
+        }
+
+        .difficulty button {
+            padding: 8px 18px;
+            border: 2px solid #4f8cff;
+            border-radius: 8px;
+            background: transparent;
+            color: #4f8cff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .difficulty button:hover,
+        .difficulty button.active {
+            background: #4f8cff;
+            color: #fff;
+        }
+
+        /* Status text */
+        .turn {
+            font-size: 1.5rem;
+            font-weight: 600;
+            min-height: 2rem;
+        }
+
+        /* Board */
+        .main-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            width: min(60vw, 250px);
+            aspect-ratio: 1 / 1;
+        }
+
+        .cell {
+            background: #2d2d44;
+            border: none;
+            border-radius: 12px;
+            font-size: clamp(2.5rem, 12vw, 4.5rem);
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .cell:hover:not(:disabled) {
+            background: #3a3a5a;
+        }
+
+        .cell:active:not(:disabled) {
+            transform: scale(0.96);
+        }
+
+        .cell:disabled {
+            cursor: not-allowed;
+        }
+
+        .cell.x { color: #ff5c7a; }
+        .cell.o { color: #4fd1c5; }
+
+        /* For highlighting the winning line later */
+        .cell.win {
+            background: #3d5a3d;
+        }
