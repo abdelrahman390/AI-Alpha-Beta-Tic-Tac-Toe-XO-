@@ -14,6 +14,7 @@ const LINES = [
 const cells = document.querySelectorAll(".cell");
 const statusEl = document.querySelector(".turn");
 const difficultyButtons = document.querySelectorAll(".difficulty button");
+const playAgainButton = document.querySelector(".play_again");
 
 let board,
   gameOver,
@@ -101,10 +102,12 @@ function finishIfOver() {
   gameOver = true;
   if (result === "draw") {
     statusEl.textContent = "It's a draw!";
+    playAgainButton.style = "display: unset;";
   } else {
     statusEl.textContent =
       result.player === HUMAN ? "You win!" : "Computer wins!";
     result.line.forEach((i) => cells[i].classList.add("win"));
+    playAgainButton.style = "display: unset;";
   }
   cells.forEach((c) => (c.disabled = true));
   return true;
@@ -142,6 +145,7 @@ function startGame() {
   board = Array(9).fill(null);
   gameOver = false;
   statusEl.textContent = "Your turn";
+  playAgainButton.style = "display: none;";
   cells.forEach((cell) => {
     cell.textContent = "";
     cell.disabled = false;
@@ -160,6 +164,10 @@ difficultyButtons.forEach((btn) => {
     btn.classList.add("active");
     startGame(); // changing level restarts the game
   });
+});
+
+playAgainButton.addEventListener("click", function () {
+  startGame();
 });
 
 startGame();
